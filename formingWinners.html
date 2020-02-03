@@ -45,12 +45,17 @@
         for(var i = 1; i <= quantidade; i++){
 
                 $('#first').append('<button type="button" id="key-'+i+'" class="btn btn-secondary " style="border-radius: 50%; min-width: 50px">1</button> ');     
-                if(quantidade % 2 == 0){
-                    countI++;
-                }
-
         }
+
+        console.log(quantidade);
         $('#first').append('<br>');
+
+        if(quantidade == 2){
+            $('#first').append('<br><button type="button" id="key-'+i+'" class="btn btn-secondary " style="border-radius: 50%; min-width: 50px">1</button> ');
+        }else{
+            competidores(quantidade / 2);
+            countI = 0;
+        }
         
     }
     
