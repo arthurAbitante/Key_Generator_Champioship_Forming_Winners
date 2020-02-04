@@ -35,38 +35,34 @@
     
     
 <script type="text/javascript">
-    let countI = 0;
-    function competidoresPar(quantidade){
-        
-    }
-    
     function competidores(quantidade){
         
         for(var i = 1; i <= quantidade; i++){
 
                 $('#first').append('<button type="button" id="key-'+i+'" class="btn btn-secondary " style="border-radius: 50%; min-width: 50px">1</button> ');     
         }
-
-        console.log(quantidade);
         $('#first').append('<br>');
 
-        if(quantidade == 2){
-            $('#first').append('<br><button type="button" id="key-'+i+'" class="btn btn-secondary " style="border-radius: 50%; min-width: 50px">1</button> ');
+        if(quantidade % 2 == 0){
+             competidores(quantidade / 2);
         }else{
-            competidores(quantidade / 2);
-            countI = 0;
+            console.log("Nao foi possivel fatorar");
+            if(quantidade == 1){
+                console.log("Temos um vencedor");
+            }else{
+                quantidade -= 1;
+                competidores(quantidade / 2);
+            }
         }
         
     }
     
     
-    let quantidade = 8;
-
-    if(quantidade % 2 == 0){
-       console.log("Par");
-    }
+    let quantidade = 9;
     
     competidores(quantidade);
+
+
 </script>
     
     
