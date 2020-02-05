@@ -36,12 +36,22 @@
     
 <script type="text/javascript">
     function competidores(quantidade){
-        
+        var group = [];
         for(var i = 1; i <= quantidade; i++){
-
+            if(quantidade % 2 == 0){    
+                if(i % 2 == 0){
+                    group.push([i, i-1]);
+                }else{
+                    //group.push([i, i-1])
+                    /*if(i == quantidade){
+                        group.push(i);
+                    }*/
+                }
+            }
                 $('#first').append('<button type="button" id="key-'+i+'" class="btn btn-secondary " style="border-radius: 50%; min-width: 50px">1</button> ');     
         }
         $('#first').append('<br>');
+        console.log(group);
 
         if(quantidade % 2 == 0){
              competidores(quantidade / 2);
@@ -58,7 +68,7 @@
     }
     
     
-    let quantidade = 9;
+    let quantidade = 8;
     
     competidores(quantidade);
 
