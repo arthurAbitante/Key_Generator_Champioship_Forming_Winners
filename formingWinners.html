@@ -41,14 +41,17 @@
             if(quantidade % 2 == 0){    
                 if(i % 2 == 0){
                     group.push([i, i-1]);
-                }else{
-                    //group.push([i, i-1])
-                    /*if(i == quantidade){
-                        group.push(i);
-                    }*/
                 }
+            }else{
+                if(i == quantidade && i != quantidade - 1 && i != quantidade - 2){
+                    group.push([i-2, i-1, i]);
+                }else if(i % 2 == 0 && i != quantidade && i != quantidade - 1 && i != quantidade - 2){
+                    group.push([i, i-1]);
+                }
+
             }
                 $('#first').append('<button type="button" id="key-'+i+'" class="btn btn-secondary " style="border-radius: 50%; min-width: 50px">1</button> ');     
+            
         }
         $('#first').append('<br>');
         console.log(group);
@@ -68,7 +71,7 @@
     }
     
     
-    let quantidade = 8;
+    let quantidade = 11;
     
     competidores(quantidade);
 
