@@ -48,14 +48,18 @@
                 }else if(i % 2 == 0 && i != quantidade && i != quantidade - 1 && i != quantidade - 2){
                     group.push([i, i-1]);
                 }
-
             }
-                $('#first').append('<button type="button" id="key-'+i+'" class="btn btn-secondary " style="border-radius: 50%; min-width: 50px">1</button> ');     
+                $('#first').append('<button type="button" id="key-'+i+'" class="btn btn-secondary fighter" style="border-radius: 50%; min-width: 50px">1</button> ');     
             
         }
         $('#first').append('<br>');
-        console.log(group);
-
+        for(var j = 0; j< group.length; j++){
+            for(var x=0; x< group[j].length; x++){
+                console.log(group[j][x]);
+                //$('.fighter').prev("button").attr("id","key-"+group[j]);
+            }
+        }
+        
         if(quantidade % 2 == 0){
              competidores(quantidade / 2);
         }else{
