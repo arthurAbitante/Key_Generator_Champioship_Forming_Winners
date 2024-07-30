@@ -6,7 +6,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
 
 </head>
 <body>
@@ -14,27 +13,37 @@
 
 <div id="first">
     
-
-
     
-</div>
-    
-<div id="second">
-        
 </div>
     
 
 <br>
 <br>
-
-<button type="button" class="btn btn-success" style="border-radius: 50%; min-width: 50px">13</button>
-
-
-
-
-    
     
 <script type="text/javascript">
+    var groupWinners = [];
+    var countElem = 0;
+    var countStep = 1;
+
+    function checaCompetidor(competidor, step){
+
+       /* $("button").click(function(){
+            groupWinners = [];
+            groupWinners.push(competitor);
+        });*/
+        $("#button-competidor-"+competidor+"-"+step).prop("disabled", true);
+        
+        console.log(competidor);
+
+    }
+
+    function escondeMostraCompetidores(elementos, fileira){
+        $('button').hide();
+        for(var i = 0; i <= elementos; i++){
+            $("#button-competidor-"+i+"-"+fileira).show();
+        }
+    }
+
     function competidores(quantidade){
         var group = [];
         for(var i = 1; i <= quantidade; i++){
@@ -49,52 +58,50 @@
                     group.push([i, i-1]);
                 }
             }
-
-                $('#first').append('<button type="button" id="key-'+i+'" class="btn btn-secondary fighter" style="border-radius: 50%; min-width: 50px">1</button> ');     
             
+            countElem = countElem + 1;
+
+            $('#first').append('<button type="button" onclick="checaCompetidor('+countElem+','+countStep+')" id="button-competidor-'+countElem+'-'+countStep+'" class="btn btn-secondary" style="border-radius: 50%; min-width: 50px">'+i+'</button> ');     
         }
-        $('#first').append('<br>');
-        //console.log(group);
-         for(var j = 0; j< group.length; j++){
-            for(var x=0; x< group[j].length; x++){
-                console.log(group[j][x]);
-                //$('.fighter').prev("button").attr("id","key-"+group[j]);
-            }
-        }
+        $('#first').append('<br><br>');
+        console.log(group);
+
+        //ao clicar, verificar o id do botão e qual o grupo em que está contido.
+        //verificar todos os valores dos grupos, e verificar se está contido.
+
         
+        //agora tem um contador para todos os elementos e para todas as fileiras. 
+
         if(quantidade % 2 == 0){
              competidores(quantidade / 2);
+             countStep += 1;
         }else{
-            console.log("Nao foi possivel fatorar");
+          //  console.log("Nao foi possivel fatorar");
             if(quantidade == 1){
-                console.log("Temos um vencedor");
+               // console.log("Temos um vencedor");
+                escondeMostraCompetidores(quantidadeFileira, 1);
             }else{
                 quantidade -= 1;
                 competidores(quantidade / 2);
+                countStep += 1;
             }
         }
         
     }
     
-    
     let quantidade = 11;
-    
+    let quantidadeFileira = quantidade;
+
     competidores(quantidade);
+
 
 
 </script>
     
-    
-    
-    
-    
-    
-    
-    
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
 
 </body>
 </html>
