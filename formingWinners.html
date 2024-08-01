@@ -31,8 +31,16 @@
             groupWinners = [];
             groupWinners.push(competitor);
         });*/
-        $("#button-competidor-"+competidor+"-"+step).prop("disabled", true);
-        
+        //console.log(groupWinners);
+        groupWinners = JSON.stringify(groupWinners);
+        competidor = JSON.stringify(competidor);
+
+        if(groupWinners.includes(competidor)){
+            $("#button-competidor-"+competidor+"-"+step).prop("disabled", true);
+            
+        }else{
+            console.log("não inclui");
+        }
         console.log(competidor);
 
     }
@@ -42,6 +50,10 @@
         for(var i = 0; i <= elementos; i++){
             $("#button-competidor-"+i+"-"+fileira).show();
         }
+    }
+
+    function agrupaCompetidores(grupo){
+        groupWinners.push(grupo);
     }
 
     function competidores(quantidade){
@@ -54,18 +66,19 @@
             }else{
                 if(i == quantidade && i != quantidade - 1 && i != quantidade - 2 && quantidade != 1){
                     group.push([i-2, i-1, i]);
+
                 }else if(i % 2 == 0 && i != quantidade && i != quantidade - 1 && i != quantidade - 2 && quantidade != 1){
                     group.push([i, i-1]);
                 }
             }
             
-            countElem = countElem + 1;
+           // countElem = countElem + 1;
 
-            $('#first').append('<button type="button" onclick="checaCompetidor('+countElem+','+countStep+')" id="button-competidor-'+countElem+'-'+countStep+'" class="btn btn-secondary" style="border-radius: 50%; min-width: 50px">'+i+'</button> ');     
+            $('#first').append('<button type="button" onclick="checaCompetidor('+i+','+countStep+')" id="button-competidor-'+i+'-'+countStep+'" class="btn btn-secondary" style="border-radius: 50%; min-width: 50px">'+i+'</button> ');     
         }
         $('#first').append('<br><br>');
-        console.log(group);
 
+        agrupaCompetidores(group);
         //ao clicar, verificar o id do botão e qual o grupo em que está contido.
         //verificar todos os valores dos grupos, e verificar se está contido.
 
@@ -75,6 +88,7 @@
         if(quantidade % 2 == 0){
              competidores(quantidade / 2);
              countStep += 1;
+             //group = [];
         }else{
           //  console.log("Nao foi possivel fatorar");
             if(quantidade == 1){
@@ -84,12 +98,13 @@
                 quantidade -= 1;
                 competidores(quantidade / 2);
                 countStep += 1;
+               // group = [];
             }
         }
         
     }
     
-    let quantidade = 11;
+    let quantidade = 13;
     let quantidadeFileira = quantidade;
 
     competidores(quantidade);
